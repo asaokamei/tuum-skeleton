@@ -1,6 +1,4 @@
 /vendor/
-!/var/README.md
-!/var/logs/.placeholder
-!/var/
+/var/
 .idea/
 composer.lock
