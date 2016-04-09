@@ -24,6 +24,8 @@ $config = [
 
 /**
  * Run app
+ * 
+ * @var \Slim\App $app
  */
 $app = include __DIR__ . '/../app/app.php';
 $app->run();
