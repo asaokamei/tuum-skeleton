@@ -34,7 +34,7 @@ use Tuum\Respond\Service\ViewHelper;
     </style>
 </head>
 <body>
-<h1 id="slim">Slim</h1>
+<h1 id="slim">Slim+Tuum</h1>
 <div>a microframework for PHP</div>
 
 <?= $this->section('contents'); ?>

@@ -6,7 +6,7 @@ return [
         'displayErrorDetails' => $builder->debug, 
 
         // template settings
-        'template-path'       => $builder->app_dir . '/BlogMS/templates/',
+        'template-path'       => $builder->app_dir . '/templates/',
 
         // Monolog settings
         'logger'              => [
