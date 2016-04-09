@@ -1,5 +1,5 @@
 <?php
-namespace App\Config\Define;
+namespace App\Config\Factory;
 
 use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;

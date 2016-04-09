@@ -1,7 +1,7 @@
 <?php
-use App\Config\Define\GuardFactory;
-use App\Config\Define\LoggerFactory;
-use App\Config\Define\ResponderFactory;
+use App\Config\Factory\GuardFactory;
+use App\Config\Factory\LoggerFactory;
+use App\Config\Factory\ResponderFactory;
 use App\Config\Handler\NotFoundHandler;
 use Slim\App;
 use Tuum\Builder\AppBuilder;
