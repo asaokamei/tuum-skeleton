@@ -3,10 +3,23 @@
 return [
     'settings' => [
         // set to false in production
-        'displayErrorDetails' => $builder->debug, 
+        'displayErrorDetails' => $builder->debug,
 
-        // template settings
-        'template-path'       => $builder->app_dir . '/templates/',
+        /**
+         * view and template settings for Tuum/Respond
+         */
+        'tuum-plates'        => [
+            'template-path' => $builder->app_dir . '/templates/',
+            'plate-setup'   => null,
+            'error-files'   => [
+                'default' => 'errors/error',
+                'status'  => [
+                    '404' => 'errors/notFound',
+                    '403' => 'errors/forbidden',
+                ],
+            ],
+            'content-file'  => 'layouts/contents',
+        ],
 
         // Monolog settings
         'logger'              => [
