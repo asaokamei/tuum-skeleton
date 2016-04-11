@@ -35,7 +35,11 @@ use Tuum\Respond\Service\ViewHelper;
 </head>
 <body>
 <h1 id="slim">Slim+Tuum</h1>
-<div>a microframework for PHP</div>
+<div><a href="/" >a microframework for PHP</a></div>
+
+<br/>
+<hr color="#e0e0e0" size="1">
+<br/>
 
 <?= $this->section('contents'); ?>
 

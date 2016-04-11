@@ -18,4 +18,17 @@ $this->layout('layouts/layout');
     <p>Try <a href="/SlimFramework">/SlimFramework</a>
 <?php endif; ?>
 
+    <p>try <a href="/control">controller and presenter sample.</a></p>
+
+    <br/>
+    <h2>error samples</h2>
+
+    <p>try <a href="/not/found">not found error</a></p>
+
+    <p>try <a href="/throw">uncaught exception</a></p>
+
+    <form method="post" action="/control" style="display: inline;">
+        try <input type="submit" value="forbidden error">
+    </form>
+
 <?php $this->stop(); ?>
