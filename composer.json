@@ -23,7 +23,7 @@
     "slim/php-view": "^2.0",
     "league/plates": "3.*",
     "monolog/monolog": "^1.17",
-    "tuum/respond": "2.0.0-RC1",
+    "tuum/respond": "2.0.0-RC2",
     "tuum/filemap": "1.0.0-RC2",
     "tuum/builder": "1.0.0-RC2",
     "php-middleware/php-debug-bar": "^1.1.0"
