@@ -1,5 +1,6 @@
 <?php
 use App\Config\Middleware\AccessLog;
+use App\Config\Middleware\MiddlewareFactory;
 use App\Config\Middleware\TuumStack;
 use Slim\App;
 use Slim\Csrf\Guard;
@@ -16,6 +17,7 @@ return function (AppBuilder $builder) {
     /** @var App $app */
     $app       = $builder->app;
     $container = $app->getContainer();
+    MiddlewareFactory::setUp($container);
 
     /**
      * C.S.R.F. guardian by Slim.
@@ -27,12 +29,12 @@ return function (AppBuilder $builder) {
     /**
      * set $responder to request (to use Respond proxy).
      */
-    $app->add(TuumStack::forge($container));
+    $app->add('tuumStack');
 
     /**
      * access log
      */
-    $app->add(AccessLog::forge($container));
+    $app->add('accessLog');
 
     return;
 

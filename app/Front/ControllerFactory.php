@@ -1,26 +1,15 @@
 <?php
 namespace App\Front;
 
+use App\Config\AbstractFactory;
 use App\Front\Controller\SampleController;
 use App\Front\Presenter\SamplePresenter;
 use ArrayAccess;
 use Interop\Container\ContainerInterface;
 use Tuum\Respond\Responder;
 
-class ControllerFactory
+class ControllerFactory extends AbstractFactory
 {
-    /**
-     * @param ArrayAccess $container
-     */
-    public static function setUp($container)
-    {
-        foreach (self::getServices() as $key => $method) {
-            $container[$key] = function ($c) use($method) {
-                return self::$method($c);
-            };
-        }
-    }
-
     /**
      * @return array
      */
