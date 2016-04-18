@@ -1,18 +1,14 @@
 <?php
 
-/**
- * @return App
- */
 use Slim\App;
 use Tuum\Builder\AppBuilder;
 
-$config = isset($config) && is_array($config) ? $config: [];
 
-return call_user_func(
 /**
+ * @param array $config
  * @return App
  */
-    function (array $config) {
+    function build_demo_application(array $config) {
         $builder = AppBuilder::forge(
             __DIR__,
             dirname(__DIR__) . '/var',
@@ -34,4 +30,4 @@ return call_user_func(
 
         return $builder->app;
 
-    }, $config);
+    }

@@ -9,23 +9,15 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-session_start();
-
-
-/**
- * configuration for AppBuilder. 
- */
-$config = [
-    'debug'    => true,
-    'env'      => null,
-    'env-file' => 'env.php',
-];
-
+require __DIR__ . '/../app/app.php';
 
 /**
- * Run app
- * 
- * @var \Slim\App $app
+ * configure and build a demo application.
  */
-$app = include __DIR__ . '/../app/app.php';
+$app = build_demo_application([
+                                  'debug'    => true,
+                                  'env'      => null,
+                                  'env-file' => 'env.php',
+                              ]);
+
 $app->run();
