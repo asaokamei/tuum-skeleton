@@ -5,7 +5,12 @@
 use League\Plates\Template\Template;
 use Tuum\Respond\Service\ViewHelper;
 
-$this->layout('layouts/layout');
+/**
+ * specify layout file to use.
+ */
+$this->layout('layouts/layout', [
+    'title' => 'Controller Sample Page'
+]);
 
 ?>
 
