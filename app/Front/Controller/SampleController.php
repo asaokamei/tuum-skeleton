@@ -5,6 +5,7 @@ use App\Front\Presenter\SamplePresenter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Tuum\Respond\Controller\DispatchByMethodTrait;
+use Tuum\Respond\Controller\ResponderHelperTrait;
 use Tuum\Respond\Responder;
 use Tuum\Respond\Responder\Redirect;
 use Tuum\Respond\Responder\View;
@@ -13,10 +14,7 @@ class SampleController
 {
     use DispatchByMethodTrait;
 
-    /**
-     * @var Responder
-     */
-    private $responder;
+    use ResponderHelperTrait;
 
     /**
      * SampleController constructor.
@@ -63,8 +61,7 @@ class SampleController
      */
     public function onGet()
     {
-        $viewData = $this->responder->getViewData();
-        return $this->view()->call(SamplePresenter::class, $viewData);
+        return $this->view()->call(SamplePresenter::class);
     }
 
     /**
@@ -73,11 +70,10 @@ class SampleController
      */
     public function onPost($name = '')
     {
-        $viewData = $this->responder->getViewData();
-        $viewData->setInputData([
+        $this->getViewData()->setInput([
                                     'name' => $name,
                                 ])
             ->setSuccess('Hello, Redirected Back!');
-        return $this->redirect()->toReferrer($viewData);
+        return $this->redirect()->toReferrer();
     }
 }
