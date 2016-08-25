@@ -13,14 +13,13 @@ return function (AppBuilder $builder) {
 
     /** @var App $app */
     $app       = $builder->app;
-    $container = $app->getContainer();
 
     /**
      * C.S.R.F. guardian by Slim.
      *
      * @return Guard
      */
-    $app->add($container['csrf']);
+    $app->add('csrf');
 
     /**
      * set $responder to request (to use Respond proxy).
