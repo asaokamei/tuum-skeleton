@@ -1,14 +1,13 @@
 <?php
 namespace App\Front;
 
-use App\Config\AbstractFactory;
+use App\Config\AbstractServiceProvider;
 use App\Front\Controller\SampleController;
 use App\Front\Presenter\SamplePresenter;
-use ArrayAccess;
 use Interop\Container\ContainerInterface;
 use Tuum\Respond\Responder;
 
-class ControllerFactory extends AbstractFactory
+class ControllerProvider extends AbstractServiceProvider
 {
     /**
      * @return array
@@ -32,7 +31,7 @@ class ControllerFactory extends AbstractFactory
 
     /**
      * @param ContainerInterface $c
-     * @return SampleController
+     * @return SamplePresenter
      */
     public static function getSamplePresenter(ContainerInterface $c)
     {

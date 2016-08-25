@@ -3,11 +3,9 @@ namespace App\Config\Factory;
 
 use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
-use Slim\App;
 use Slim\Csrf\Guard;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Tuum\Builder\AppBuilder;
 use Tuum\Respond\Responder;
 
 class GuardFactory
@@ -18,20 +16,13 @@ class GuardFactory
     private $responder;
 
     /**
-     * @var AppBuilder
-     */
-    private $builder;
-
-    /**
      * builds self.
      *
-     * @param AppBuilder $builder
      * @return GuardFactory
      */
-    public static function forge(AppBuilder $builder)
+    public static function forge()
     {
         $self          = new self;
-        $self->builder = $builder;
 
         return $self;
     }

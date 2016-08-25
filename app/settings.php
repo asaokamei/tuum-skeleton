@@ -26,7 +26,5 @@ return [
             'name' => 'slim-app',
             'path' => $builder->var_dir . '/logs/app.log',
         ],
-        'app-dir'             => $builder->app_dir,
-        'var-dir'             => $builder->var_dir,
     ],
 ];

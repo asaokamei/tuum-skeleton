@@ -5,15 +5,10 @@ use Tuum\Builder\AppBuilder;
 
 
 /**
- * @param array $config
+ * @param AppBuilder $builder
  * @return App
  */
-    function build_demo_application(array $config) {
-        $builder = AppBuilder::forge(
-            __DIR__,
-            dirname(__DIR__) . '/var',
-            $config
-        );
+    function build_demo_application(AppBuilder $builder) {
 
         // Instantiate the app
         $settings     = $builder->configure('settings');

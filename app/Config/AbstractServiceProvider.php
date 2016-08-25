@@ -4,7 +4,7 @@ namespace App\Config;
 use ArrayAccess;
 use Interop\Container\ContainerInterface;
 
-abstract class AbstractFactory
+abstract class AbstractServiceProvider
 {
     /**
      * overwrite this method.

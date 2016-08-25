@@ -6,7 +6,6 @@ use Tuum\Builder\AppBuilder;
 use Tuum\Respond\Helper\ResponderBuilder;
 use Tuum\Respond\Responder;
 use Tuum\Respond\Service\ErrorView;
-use Tuum\Respond\Service\PlatesViewer;
 use Tuum\Respond\Service\Renderer\Plates;
 use Tuum\Respond\Service\SessionStorage;
 
@@ -18,10 +17,9 @@ class ResponderFactory
     private $container;
 
     /**
-     * @param AppBuilder $builder
      * @return ResponderFactory
      */
-    public static function forge(AppBuilder $builder)
+    public static function forge()
     {
         $self = new self();
         return $self;
