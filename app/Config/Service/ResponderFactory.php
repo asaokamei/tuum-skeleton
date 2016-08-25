@@ -2,7 +2,6 @@
 namespace App\Config\Service;
 
 use Interop\Container\ContainerInterface;
-use Tuum\Builder\AppBuilder;
 use Tuum\Respond\Helper\ResponderBuilder;
 use Tuum\Respond\Responder;
 use Tuum\Respond\Service\ErrorView;
