@@ -1,7 +1,7 @@
 <?php
 namespace App\Front;
 
-use App\Config\AbstractServiceProvider;
+use App\Config\Utils\AbstractServiceProvider;
 use App\Front\Controller\SampleController;
 use App\Front\Presenter\SamplePresenter;
 use Interop\Container\ContainerInterface;
@@ -12,7 +12,7 @@ class ControllerProvider extends AbstractServiceProvider
     /**
      * @return array
      */
-    public static function getServices()
+    public function getServices()
     {
         return [
             SampleController::class => 'getSampleController',
@@ -24,7 +24,7 @@ class ControllerProvider extends AbstractServiceProvider
      * @param ContainerInterface $c
      * @return SampleController
      */
-    public static function getSampleController(ContainerInterface $c)
+    public function getSampleController(ContainerInterface $c)
     {
         return new SampleController($c->get(Responder::class));
     }
@@ -33,7 +33,7 @@ class ControllerProvider extends AbstractServiceProvider
      * @param ContainerInterface $c
      * @return SamplePresenter
      */
-    public static function getSamplePresenter(ContainerInterface $c)
+    public function getSamplePresenter(ContainerInterface $c)
     {
         return new SamplePresenter($c->get(Responder::class));
     }

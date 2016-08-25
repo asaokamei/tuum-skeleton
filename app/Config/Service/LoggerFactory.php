@@ -1,5 +1,5 @@
 <?php
-namespace App\Config\Factory;
+namespace App\Config\Service;
 
 use Interop\Container\ContainerInterface;
 use Monolog\Handler\FingersCrossedHandler;
