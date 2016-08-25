@@ -9,7 +9,7 @@ return [
          * view and template settings for Tuum/Respond
          */
         'tuum-plates'        => [
-            'template-path' => $builder->app_dir . '/templates/',
+            'template-path' => $builder->app_dir . '/Demo/templates/',
             'plate-setup'   => null,
             'error-files'   => [
                 'default' => 'errors/error',

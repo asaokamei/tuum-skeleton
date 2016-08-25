@@ -1,5 +1,5 @@
 <?php
-namespace App\Front\Presenter;
+namespace App\Demo\Front\Presenter;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

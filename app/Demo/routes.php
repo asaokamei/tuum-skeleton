@@ -1,7 +1,7 @@
 <?php
 // Routes
 
-use App\Front\Controller\SampleController;
+use App\Demo\Front\Controller\SampleController;
 use Slim\App;
 use Tuum\Builder\AppBuilder;
 use Tuum\Respond\Respond;

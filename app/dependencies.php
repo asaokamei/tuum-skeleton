@@ -1,7 +1,7 @@
 <?php
 use App\Config\MiddlewareProvider;
 use App\Config\ServiceProvider;
-use App\Front\ControllerProvider;
+use App\Demo\Front\ControllerProvider;
 use Slim\App;
 use Tuum\Builder\AppBuilder;
 

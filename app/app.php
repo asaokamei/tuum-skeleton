@@ -11,7 +11,7 @@ use Tuum\Builder\AppBuilder;
     function build_demo_application(AppBuilder $builder) {
 
         // Instantiate the app
-        $settings     = $builder->configure('settings');
+        $settings     = $builder->configure('Demo/settings');
         $builder->app = new App($settings);
 
         // Set up dependencies
@@ -21,7 +21,7 @@ use Tuum\Builder\AppBuilder;
         $builder->configure('middleware');
 
         // Register routes
-        $builder->configure('routes');
+        $builder->configure('Demo/routes');
 
         return $builder->app;
 

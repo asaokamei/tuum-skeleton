@@ -1,9 +1,9 @@
 <?php
-namespace App\Front;
+namespace App\Demo\Front;
 
 use App\Config\Utils\AbstractServiceProvider;
-use App\Front\Controller\SampleController;
-use App\Front\Presenter\SamplePresenter;
+use App\Demo\Front\Controller\SampleController;
+use App\Demo\Front\Presenter\SamplePresenter;
 use Interop\Container\ContainerInterface;
 use Tuum\Respond\Responder;
 

@@ -1,7 +1,7 @@
 <?php
-namespace App\Front\Controller;
+namespace App\Demo\Front\Controller;
 
-use App\Front\Presenter\SamplePresenter;
+use App\Demo\Front\Presenter\SamplePresenter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Tuum\Respond\Controller\DispatchByMethodTrait;
