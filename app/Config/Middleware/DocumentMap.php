@@ -9,6 +9,8 @@ use Tuum\Respond\Responder;
 
 class DocumentMap
 {
+    const FOUND_MISC = 'mapped-php';
+    
     /**
      * @var FileMap
      */
@@ -23,16 +25,6 @@ class DocumentMap
      * @var string
      */
     public $index_file = 'index';
-
-    /**
-     * @var ServerRequestInterface
-     */
-    private $request;
-
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
 
     public function __construct(FileMap $mapper, $responder)
     {
@@ -63,9 +55,7 @@ class DocumentMap
      */
     public function render($found)
     {
-        $path = $found->getPath();
-        $res  =  $this->responder->view($this->request, $this->response)->render($path);
-        $found->setContents($res->getBody()->getContents());
+        $found->setMisc(self::FOUND_MISC);
         return $found;
     }
 
@@ -77,12 +67,13 @@ class DocumentMap
      */
     public function __invoke($request, $response, $next)
     {
-        $this->request = $request;
-        $this->response = $response;
         $path = $request->getUri()->getPath();
         $info = $this->mapper->render($path);
         if (!$info->found()) {
             return $next($request, $response);
+        }
+        if ($info->getMisc() === self::FOUND_MISC) {
+            return $this->responder->view($request, $response)->render($info->getPath());
         }
         if ($fp = $info->getResource()) {
             return $this->responder->view($request, $response)->asFileContents($fp, $info->getMimeType());
