@@ -23,7 +23,7 @@ class TuumStack
      * Set the LoggerInterface instance.
      *
      * @param ContainerInterface $c
-     * @return AccessLog
+     * @return TuumStack
      */
     public static function forge(ContainerInterface $c)
     {
