@@ -50,13 +50,13 @@ class DocumentMap
     }
 
     /**
-     * @param FileInfo $found
+     * @param FileInfo $file
      * @return FileInfo
      */
-    public function render($found)
+    public function render($file)
     {
-        $found->setMisc(self::FOUND_MISC);
-        return $found;
+        $file->setMisc(self::FOUND_MISC);
+        return $file;
     }
 
     /**
@@ -68,17 +68,17 @@ class DocumentMap
     public function __invoke($request, $response, $next)
     {
         $path = $request->getUri()->getPath();
-        $info = $this->mapper->render($path);
-        if (!$info->found()) {
+        $file = $this->mapper->render($path);
+        if (!$file->found()) {
             return $next($request, $response);
         }
-        if ($info->getMisc() === self::FOUND_MISC) {
-            return $this->responder->view($request, $response)->render($info->getPath());
+        if ($file->getMisc() === self::FOUND_MISC) {
+            return $this->responder->view($request, $response)->render($file->getPath());
         }
-        if ($fp = $info->getResource()) {
-            return $this->responder->view($request, $response)->asFileContents($fp, $info->getMimeType());
+        if ($fp = $file->getResource()) {
+            return $this->responder->view($request, $response)->asFileContents($fp, $file->getMimeType());
         }
         $view = $this->responder->view($request, $response);
-        return $view->asContents($info->getContents());
+        return $view->asContents($file->getContents());
     }
 }
