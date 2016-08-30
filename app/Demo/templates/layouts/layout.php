@@ -35,7 +35,7 @@ use Tuum\Respond\Service\ViewHelper;
 </head>
 <body>
 <h1 id="slim">Slim+Tuum</h1>
-<div><a href="/" >a microframework for PHP</a></div>
+<div><a href="/" >a micro-framework for PHP</a></div>
 
 <br/>
 <hr color="#e0e0e0" size="1">

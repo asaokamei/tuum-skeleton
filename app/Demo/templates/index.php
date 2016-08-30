@@ -15,7 +15,7 @@ $this->layout('layouts/layout');
 <?php if (isset($name)) : ?>
     <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
 <?php else: ?>
-    <p>Try <a href="/SlimFramework">/SlimFramework</a>
+    <p>Try <a href="/name/Slim-Tuum">/Slim+Tuum</a>
 <?php endif; ?>
 
     <p>try <a href="/control">controller and presenter sample.</a></p>

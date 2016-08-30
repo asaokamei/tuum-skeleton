@@ -13,15 +13,23 @@ return function(AppBuilder $builder) {
      */
     $app = $builder->app;
 
+    $app->any('/', function ($request, $response, $args) {
+        // Render index view
+        return Respond::view($request, $response)->render('index', $args);
+    });
+    
     $app->any('/control', SampleController::class);
 
-    $app->get('/throw', function ($request, $response, $args) {
+    $app->get('/throw', function () {
         // Render index view
         throw new RuntimeException('always throws an exception!');
     });
     
-    $app->get('/[{name}]', function ($request, $response, $args) {
+    $app->get('/name/[{name}]', function ($request, $response, $args) {
         // Render index view
+        if (!isset($args['name'])) {
+            $args['name'] = 'Slim+Tuum';
+        }
         return Respond::view($request, $response)->render('index', $args);
     });
 };
