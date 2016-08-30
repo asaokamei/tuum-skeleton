@@ -26,5 +26,10 @@ return [
             'name' => 'slim-app',
             'path' => $builder->var_dir . '/logs/app.log',
         ],
+
+        /**
+         * set build options used in AppBuilder.
+         */
+        'build-options' => $builder->getOptions(),
     ],
 ];
