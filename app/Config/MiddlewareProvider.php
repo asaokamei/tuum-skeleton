@@ -58,7 +58,7 @@ class MiddlewareProvider extends AbstractServiceProvider
      */
     public function getDocumentMap(ContainerInterface $c)
     {
-        $setting   = $c->get('settings')['tuum-plates'];
+        $setting   = $c->get('settings')['respond-options'];
         return DocumentMap::forge($c->get(Responder::class), $setting['template-path']);
     }
 }

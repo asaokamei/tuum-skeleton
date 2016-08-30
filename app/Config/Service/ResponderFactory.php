@@ -31,7 +31,7 @@ class ResponderFactory
     public function __invoke(ContainerInterface $c)
     {
         $this->container = $c;
-        $setting   = $c->get('settings')['tuum-plates'];
+        $setting   = $c->get('settings')['respond-options'];
         return $this->setupPlatesView($setting);
     }
 
