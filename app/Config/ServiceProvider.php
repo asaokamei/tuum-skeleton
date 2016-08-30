@@ -62,11 +62,11 @@ class ServiceProvider extends AbstractServiceProvider
 
     /**
      * @param ContainerInterface $c
-     * @return callable
+     * @return callable|NotFoundHandler
      */
     public function getNotFound(ContainerInterface $c)
     {
-        return NotFoundHandler::forge($this->builder)->__invoke($c);
+        return NotFoundHandler::forge($this->builder, $c);
     }
 
     /**

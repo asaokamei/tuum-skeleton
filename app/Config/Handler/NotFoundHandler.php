@@ -23,31 +23,22 @@ class NotFoundHandler
      * @param AppBuilder $builder
      * @return NotFoundHandler
      */
-    public static function forge(AppBuilder $builder)
+    public static function forge(AppBuilder $builder, ContainerInterface $c)
     {
         $self = new self();
         $self->isProduction = $builder->isProduction();
-        
+        $self->responder = $c->get(Responder::class);
+
         return $self;
     }
 
     /**
-     * @param ContainerInterface $c
-     * @return callable
-     */
-    public function __invoke(ContainerInterface $c)
-    {
-        $this->responder = $c->get(Responder::class);
-        return [$this, 'notFound'];
-    }
-
-    /**
-     * @param ServerRequestInterface $req
-     * @param ResponseInterface      $res
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
      * @return ResponseInterface
      */
-    public function notFound(ServerRequestInterface $req, ResponseInterface $res)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
-        return $this->responder->error($req, $res)->notFound();
+        return $this->responder->error($request, $response)->notFound();
     }
 }
