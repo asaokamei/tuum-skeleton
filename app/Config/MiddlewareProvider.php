@@ -1,12 +1,14 @@
 <?php
 namespace App\Config;
 
+use App\Config\Middleware\DocumentMap;
 use App\Config\Middleware\GuardFactory;
 use App\Config\Middleware\AccessLog;
 use App\Config\Middleware\TuumStack;
 use App\Config\Utils\AbstractServiceProvider;
 use Interop\Container\ContainerInterface;
 use Slim\Csrf\Guard;
+use Tuum\Respond\Responder;
 
 class MiddlewareProvider extends AbstractServiceProvider
 {
@@ -19,6 +21,7 @@ class MiddlewareProvider extends AbstractServiceProvider
             'tuumStack' => 'getTuumStack',
             'accessLog' => 'getAccessLog',
             'csrf'      => 'getCsRf',
+            'fileMap'   => 'getDocumentMap'
         ];
     }
 
@@ -47,5 +50,15 @@ class MiddlewareProvider extends AbstractServiceProvider
     public function getCsRf(ContainerInterface $c)
     {
         return GuardFactory::forge()->__invoke($c);
+    }
+
+    /**
+     * @param ContainerInterface $c
+     * @return DocumentMap
+     */
+    public function getDocumentMap(ContainerInterface $c)
+    {
+        $setting   = $c->get('settings')['tuum-plates'];
+        return DocumentMap::forge($c->get(Responder::class), $setting['template-path']);
     }
 }

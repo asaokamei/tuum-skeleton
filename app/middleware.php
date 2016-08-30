@@ -15,6 +15,11 @@ return function (AppBuilder $builder) {
     $app       = $builder->app;
 
     /**
+     * FileMap
+     */
+    $app->add('fileMap');
+    
+    /**
      * C.S.R.F. guardian by Slim.
      *
      * @return Guard
