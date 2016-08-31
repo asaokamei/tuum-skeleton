@@ -3,11 +3,19 @@ namespace App\Config\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Tuum\Locator\Handler\HandlerInterface;
 use Tuum\Locator\FileInfo;
 use Tuum\Locator\FileMap;
 use Tuum\Respond\Responder;
 
-class DocumentMap
+/**
+ * Class DocumentMap
+ *
+ * a FileMap middleware as well as handler for FileMap.
+ *
+ * @package App\Config\Middleware
+ */
+class DocumentMap implements HandlerInterface
 {
     const FOUND_MISC = 'mapped-php';
     
@@ -44,22 +52,14 @@ class DocumentMap
         $mapper   = FileMap::forge($docs_dir);
         $self     = new self($mapper, $responder);
         
-        $mapper->renderer->addViewExtension('php', [$self, 'render'], 'text_html');
+        $mapper->addHandler($self);
         
         return $self;
     }
 
     /**
-     * @param FileInfo $file
-     * @return FileInfo
-     */
-    public function render($file)
-    {
-        $file->setMisc(self::FOUND_MISC);
-        return $file;
-    }
-
-    /**
+     * a invokable method for Application Middleware.
+     *
      * @param ServerRequestInterface $request
      * @param ResponseInterface      $response
      * @param callable               $next
@@ -78,7 +78,26 @@ class DocumentMap
         if ($fp = $file->getResource()) {
             return $this->responder->view($request, $response)->asFileContents($fp, $file->getMimeType());
         }
+        if ($contents = $file->getContents()) {
+            return $this->responder->view($request, $response)->asContents($contents);
+        }
         $view = $this->responder->view($request, $response);
         return $view->asContents($file->getContents());
+    }
+
+    /**
+     * a handler for FileMap.
+     *
+     * @param FileInfo $file
+     * @return FileInfo
+     */
+    public function handle($file)
+    {
+        if (!$file->exists('php')) {
+            return $file;
+        }
+        $file->setFound();
+        $file->setMisc(self::FOUND_MISC);
+        return $file;
     }
 }
