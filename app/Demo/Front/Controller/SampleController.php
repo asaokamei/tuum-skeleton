@@ -27,22 +27,6 @@ class SampleController
     }
 
     /**
-     * @return View
-     */
-    protected function view()
-    {
-        return $this->responder->view($this->request, $this->response);
-    }
-
-    /**
-     * @return Redirect
-     */
-    protected function redirect()
-    {
-        return $this->responder->redirect($this->request, $this->response);
-    }
-
-    /**
      * @param ServerRequestInterface $request
      * @param ResponseInterface      $response
      * @param array                  $args

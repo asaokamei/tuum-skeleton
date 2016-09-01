@@ -27,4 +27,5 @@ $builder = AppBuilder::forge(
 );
 $app = build_demo_application($builder);
 
+session_start();
 $app->run();

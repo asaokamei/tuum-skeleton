@@ -9,8 +9,14 @@ return [
          * view and template settings for Tuum/Respond
          */
         'respond-options'        => [
+            'app-name'       => 'tuum-app',
             'template-path' => $builder->app_dir . '/Demo/templates/',
-            'plate-setup'   => null,
+            'content-file'  => 'layouts/contents',
+            'renderer'       => 'plates',   // set renderer type: plates, twig, or tuum.
+            'plates-options' => [
+                'options'  => [],
+                'callback' => null,
+            ],
             'error-files'   => [
                 'default' => 'errors/error',
                 'status'  => [
@@ -18,7 +24,6 @@ return [
                     '403' => 'errors/forbidden',
                 ],
             ],
-            'content-file'  => 'layouts/contents',
         ],
 
         // Monolog settings

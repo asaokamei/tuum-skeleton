@@ -47,7 +47,6 @@ class ServiceProvider extends AbstractServiceProvider
         return [
             'logger'          => 'getLogger',
             'notFoundHandler' => 'getNotFound',
-            Responder::class  => 'getResponder',
         ];
     }
 
