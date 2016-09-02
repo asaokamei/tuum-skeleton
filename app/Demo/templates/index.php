@@ -20,6 +20,8 @@ $this->layout('layouts/layout');
 
     <p>try <a href="/control">controller and presenter sample.</a></p>
 
+    <p>try <a href="/docs">document rendered by FileMap.</a></p>
+
     <br/>
     <h2>error samples</h2>
 
