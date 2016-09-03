@@ -2,6 +2,7 @@
 namespace App\Demo\Front;
 
 use App\Config\Utils\AbstractServiceProvider;
+use App\Demo\Front\Controller\PaginationController;
 use App\Demo\Front\Controller\SampleController;
 use App\Demo\Front\Presenter\SamplePresenter;
 use Interop\Container\ContainerInterface;
@@ -17,6 +18,7 @@ class ControllerProvider extends AbstractServiceProvider
         return [
             SampleController::class => 'getSampleController',
             SamplePresenter::class  => 'getSamplePresenter',
+            PaginationController::class => 'getPaginationController'
         ];
     }
 
@@ -36,5 +38,14 @@ class ControllerProvider extends AbstractServiceProvider
     public function getSamplePresenter(ContainerInterface $c)
     {
         return new SamplePresenter($c->get(Responder::class));
+    }
+
+    /**
+     * @param ContainerInterface $c
+     * @return PaginationController
+     */
+    public function getPaginationController(ContainerInterface $c)
+    {
+        return new PaginationController($c->get(Responder::class));
     }
 }
