@@ -16,6 +16,7 @@ $this->layout('layouts/layout', [
 
 /** @var Inputs $input */
 /** @var ToHtmlInterface $pages */
+$list  = $view->data->get('list');
 $input = $view->data->get('input');
 $pages = $view->data->get('pages');
 
@@ -71,6 +72,18 @@ $pages = $view->data->get('pages');
         <input type="submit" value="search">
     </div>
 </form>
+
+<p>&nbsp;</p>
+<?php
+foreach($list as $key => $item) {
+    echo "item#{$item} ";
+    if (!(($key+1) % 5)) {
+        echo '<br/>';
+    }
+}
+?>
+
+    <p>&nbsp;</p>
 
 <?= $pages; ?>
 

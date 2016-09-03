@@ -53,21 +53,19 @@ class PaginationController
     public function onGet($input)
     {
         $list = [];
-        for($idx = 0; $idx <= $input->getLimit(); $idx++) {
-            $list[] = $input->getOffset() + $idx;
+        for($idx = 0; $idx < $input->getLimit(); $idx++) {
+            $list[] = $input->getOffset() + $idx + 1;
         }
         $total = is_numeric($input->get('total')) ? $input->get('total'): 500;
         $input->setTotal($total);
         $input->setList($list);
-        $paginate = new PaginateMini();
-        $paginate = $paginate->withInputs($input);
-        $pageList = new ToBootstrap();
-        $pageList = $pageList->withPaginate($paginate);
+        $pageList = $input->getPagination();
         return $this->view()
             ->withView(function(ViewDataInterface $view) use($input, $pageList) {
                 return $view
                     ->setData('input', $input)
-                    ->setData('pages', $pageList);
+                    ->setData('pages', $pageList)
+                    ->setData('list', $input->getList());
             })
             ->render('pages');
     }
