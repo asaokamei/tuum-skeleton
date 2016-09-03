@@ -3,7 +3,11 @@ namespace App\Config\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Tuum\Pagination\Inputs;
 use Tuum\Pagination\Pager;
+use Tuum\Pagination\Paginate\PaginateFull;
+use Tuum\Pagination\Paginate\PaginateMini;
+use Tuum\Pagination\ToHtml\ToBootstrap;
 
 class PaginateInput
 {
@@ -33,7 +37,11 @@ class PaginateInput
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         $pager = $this->pager->withRequest($request);
-        $input = $pager->call(function ($input) {
+        $input = $pager->call(function (Inputs $input) {
+            $input->setPagination(
+                new PaginateFull(),
+                new ToBootstrap()
+            );
             return $input;
         });
         $query = $request->getQueryParams();
