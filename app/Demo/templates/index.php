@@ -23,6 +23,8 @@ $this->layout('layouts/layout');
 
     <p>try <a href="/docs">document rendered by FileMap.</a></p>
 
+    <p>try <a href="/pagination">pagination sample. </a></p>
+
     <br/>
     <h2>error samples</h2>
 
