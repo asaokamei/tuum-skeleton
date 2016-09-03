@@ -67,24 +67,23 @@ $pages = $view->data->get('pages');
 <form method="get" action="">
     <div class="inputs">
         <label>Key: <input type="text" name="key" value="<?= $input->get('key'); ?>" style="width: 5em;"></label>
-        <label>Happy? <input type="checkbox" name="happy" value="H"></label>
+        <label>Happy? <input type="checkbox" name="happy" value="H"<?= $input->get('happy')? ' checked': '';?>></label>
         <label>Total: <input type="text" name="total" value="<?= $input->get('total'); ?>" style="width: 3em;"></label>
         <input type="submit" value="search">
     </div>
 </form>
 
-<p>&nbsp;</p>
+    <?= $pages; ?>
+
 <?php
 foreach($list as $key => $item) {
-    echo "item#{$item} ";
+    echo $item, ' ';
     if (!(($key+1) % 5)) {
         echo '<br/>';
     }
 }
 ?>
 
-    <p>&nbsp;</p>
-
-<?= $pages; ?>
+<p><a href="?_page" >reload last pagination page. </a></p>
 
 <?php $this->stop(); ?>

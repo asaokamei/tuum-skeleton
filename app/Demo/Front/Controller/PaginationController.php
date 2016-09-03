@@ -52,12 +52,14 @@ class PaginationController
      */
     public function onGet($input)
     {
-        $list = [];
-        for($idx = 0; $idx < $input->getLimit(); $idx++) {
-            $list[] = $input->getOffset() + $idx + 1;
-        }
         $total = is_numeric($input->get('total')) ? $input->get('total'): 500;
         $input->setTotal($total);
+        $list = [];
+        for($idx = 0; $idx < $input->getLimit(); $idx++) {
+            $list[] = $input->get('key') . ':' 
+                . (string) ($input->getOffset() + $idx + 1) 
+                . ($input->get('happy') ? '♥' : '？');
+        }
         $input->setList($list);
         $pageList = $input->getPagination();
         return $this->view()
