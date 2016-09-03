@@ -16,9 +16,9 @@ $this->layout('layouts/layout', [
 
 <?php $this->start('contents'); ?>
 
-    <h1>This is sample file</h1>
+    <h1>Controller and Presenter Sample</h1>
 
-<?= $view->message->onlyOne(); ?>
+<h2><?= $view->message->onlyOne(); ?></h2>
 
 <form method="post" action="" >
     <label>Your Name: <input type="text" name="name" value="tuum" /></label>

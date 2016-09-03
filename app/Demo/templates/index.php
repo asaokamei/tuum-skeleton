@@ -14,6 +14,7 @@ $this->layout('layouts/layout');
 
 <?php if (isset($name)) : ?>
     <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
+    <p>try some other url: <a href="/name/My+Friend">/name/{name}</a></p>
 <?php else: ?>
     <p>Try <a href="/name/Slim-Tuum">/Slim+Tuum</a>
 <?php endif; ?>

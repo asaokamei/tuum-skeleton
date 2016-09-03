@@ -49,15 +49,16 @@ class SampleController
     }
 
     /**
-     * @param string $name
      * @return ResponseInterface
      */
-    public function onPost($name = '')
+    public function onPost()
     {
+        $name = $this->getPost('name');
+        $display = $name ? " '{$name}'" : '';
         $this->getViewData()->setInput([
                                     'name' => $name,
                                 ])
-            ->setSuccess('Hello, Redirected Back!');
+            ->setSuccess("Hello{$display}, Redirected Back!");
         return $this->redirect()->toReferrer();
     }
 }
