@@ -30,11 +30,11 @@ class SamplePresenter implements PresenterInterface
      *
      * @param ServerRequestInterface  $request
      * @param ResponseInterface       $response
-     * @param mixed|ViewDataInterface $viewData
+     * @param array                   $viewData
      * @return ResponseInterface
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $viewData)
     {
-        return $this->responder->withView($viewData)->view($request, $response)->render('sample');
+        return $this->responder->view($request, $response)->render('sample', $viewData);
     }
 }
