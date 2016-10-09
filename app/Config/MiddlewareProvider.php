@@ -4,12 +4,11 @@ namespace App\Config;
 use App\Config\Middleware\DocumentMap;
 use App\Config\Middleware\GuardFactory;
 use App\Config\Middleware\AccessLog;
-use App\Config\Middleware\paginateInput;
 use App\Config\Middleware\TuumStack;
-use App\Config\Utils\AbstractServiceProvider;
 use Interop\Container\ContainerInterface;
 use Slim\Csrf\Guard;
 use Tuum\Pagination\Pager;
+use Tuum\Respond\Helper\ServiceOptions;
 use Tuum\Respond\Responder;
 
 class MiddlewareProvider
@@ -61,15 +60,16 @@ class MiddlewareProvider
      */
     public function getDocumentMap(ContainerInterface $c)
     {
-        $setting   = $c->get('settings')['respond-options'];
-        return DocumentMap::forge($c->get(Responder::class), $setting['template-path']);
+        /** @var ServiceOptions $options */
+        $options   = $c->get(ServiceOptions::class);
+        $template  = $options->toArray()['template-path'];
+        return DocumentMap::forge($c->get(Responder::class), $template);
     }
 
     /**
-     * @param ContainerInterface $c
      * @return PaginateInput
      */
-    public function getPaginateInput(ContainerInterface $c)
+    public function getPaginateInput()
     {
         return new PaginateInput(new Pager());
     }
