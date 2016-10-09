@@ -8,7 +8,7 @@ use App\Demo\Front\Presenter\SamplePresenter;
 use Interop\Container\ContainerInterface;
 use Tuum\Respond\Responder;
 
-class ControllerProvider extends AbstractServiceProvider
+class ControllerProvider
 {
     /**
      * @return array
@@ -16,9 +16,9 @@ class ControllerProvider extends AbstractServiceProvider
     public function getServices()
     {
         return [
-            SampleController::class => 'getSampleController',
-            SamplePresenter::class  => 'getSamplePresenter',
-            PaginationController::class => 'getPaginationController'
+            SampleController::class => [$this, 'getSampleController'],
+            SamplePresenter::class  => [$this, 'getSamplePresenter'],
+            PaginationController::class => [$this, 'getPaginationController'],
         ];
     }
 

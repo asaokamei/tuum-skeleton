@@ -12,7 +12,7 @@ use Slim\Csrf\Guard;
 use Tuum\Pagination\Pager;
 use Tuum\Respond\Responder;
 
-class MiddlewareProvider extends AbstractServiceProvider
+class MiddlewareProvider
 {
     /**
      * @return array
@@ -20,11 +20,11 @@ class MiddlewareProvider extends AbstractServiceProvider
     public function getServices()
     {
         return [
-            'tuumStack' => 'getTuumStack',
-            'accessLog' => 'getAccessLog',
-            'csrf'      => 'getCsRf',
-            'fileMap'   => 'getDocumentMap',
-            'paginate'  => 'getPaginateInput',
+            'tuumStack' => [$this, 'getTuumStack'],
+            'accessLog' => [$this, 'getAccessLog'],
+            'csrf'      => [$this, 'getCsRf'],
+            'fileMap'   => [$this, 'getDocumentMap'],
+            'paginate'  => [$this, 'getPaginateInput'],
         ];
     }
 

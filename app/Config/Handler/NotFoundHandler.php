@@ -20,7 +20,8 @@ class NotFoundHandler
     private $isProduction;
 
     /**
-     * @param AppBuilder $builder
+     * @param AppBuilder         $builder
+     * @param ContainerInterface $c
      * @return NotFoundHandler
      */
     public static function forge(AppBuilder $builder, ContainerInterface $c)

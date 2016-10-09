@@ -1,11 +1,12 @@
 <?php
 use App\Config\MiddlewareProvider;
-use App\Config\ResponderProvider;
 use App\Config\ServiceProvider;
+use App\Config\Utils\ServiceLoader;
 use App\Demo\Front\ControllerProvider;
 use Interop\Container\ContainerInterface;
 use Slim\App;
 use Tuum\Builder\AppBuilder;
+use Tuum\Respond\Helper\ServiceProvider as ResponderProvider;
 
 /**
  * setup container
@@ -21,8 +22,9 @@ return function (AppBuilder $builder) {
     /** @var ContainerInterface $container */
     $container = $app->getContainer();
 
-    ServiceProvider::forge($builder)->load($container);
-    ResponderProvider::forge($container)->load($container);
-    MiddlewareProvider::setUp($container);
-    ControllerProvider::setUp($container);
+    $loader = new ServiceLoader($container);
+    $loader->load(ServiceProvider::forge());
+    $loader->load(new ResponderProvider());
+    $loader->load(new MiddlewareProvider());
+    $loader->load(new ControllerProvider());
 };

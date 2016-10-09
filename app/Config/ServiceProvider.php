@@ -10,30 +10,21 @@ use Monolog\Logger;
 use Tuum\Builder\AppBuilder;
 use Tuum\Respond\Responder;
 
-class ServiceProvider extends AbstractServiceProvider
+class ServiceProvider
 {
     /**
-     * @var AppBuilder
-     */
-    private $builder;
-
-    /**
      * ServiceProvider constructor.
-     *
-     * @param AppBuilder $builder
      */
-    public function __construct($builder)
+    public function __construct()
     {
-        $this->builder = $builder;
     }
 
     /**
-     * @param AppBuilder $builder
      * @return ServiceProvider
      */
-    public static function forge($builder)
+    public static function forge()
     {
-        return new self($builder);
+        return new self();
     }
 
     /**
@@ -45,8 +36,8 @@ class ServiceProvider extends AbstractServiceProvider
     public function getServices()
     {
         return [
-            'logger'          => 'getLogger',
-            'notFoundHandler' => 'getNotFound',
+            'logger'          => [$this, 'getLogger'],
+            'notFoundHandler' => [$this, 'getNotFound'],
         ];
     }
 
@@ -56,7 +47,7 @@ class ServiceProvider extends AbstractServiceProvider
      */
     public function getLogger(ContainerInterface $c)
     {
-        return LoggerFactory::forge($this->builder)->__invoke($c);
+        return LoggerFactory::forge($c->get(AppBuilder::class))->__invoke($c);
     }
 
     /**
@@ -65,16 +56,7 @@ class ServiceProvider extends AbstractServiceProvider
      */
     public function getNotFound(ContainerInterface $c)
     {
-        return NotFoundHandler::forge($this->builder, $c);
-    }
-
-    /**
-     * @param ContainerInterface $c
-     * @return Responder
-     */
-    public function getResponder(ContainerInterface $c)
-    {
-        return ResponderFactory::forge()->__invoke($c);
+        return NotFoundHandler::forge($c->get(AppBuilder::class), $c);
     }
 }
 
